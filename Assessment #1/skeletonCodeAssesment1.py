@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestRegressor
 from datetime import datetime, timedelta
 
 import xgboost as xgb
@@ -31,6 +30,9 @@ doctor_avg_delays = df.groupby('doctor_id')['delay'].mean().to_dict()
 features = ['doctor_id', 'hour', 'day_of_week', 'month', 'is_morning', 'is_afternoon', 
             'is_evening', 'doctor_avg_delay', 'daily_appointments', 'doc_unique_patients']
 target = 'delay'
+
+# Assumed features have short ranges thus no need of scaling.
+# As data not available, no splitting for validation or test set.
 
 # Train AI Model
 X = df[features]
